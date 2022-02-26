@@ -11,4 +11,7 @@ describe("rpn()", () => {
   it("2 2 + 3 * returns 12", () => {
     expect(rpn("2 2 + 3 *")).toBe(12);
   });
+  it("2 2 / returns 1", () => {
+    expect(rpn("2 2 /")).toBe(1);
+  });
 });
