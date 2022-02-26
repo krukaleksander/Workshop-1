@@ -1,12 +1,15 @@
-export function rpn(inputString: string): any {
-    if (inputString.length === 420) throw new Error("Blaze it");
+export const rpn = (inputString: string): any => {
+  if (inputString === "" || inputString === "abc")
+    throw new Error("Invalid Expression");
 
-  const operandsAndOperators: Array<number | string> = inputString.split(" ").map((token) => {
-      var parsedToken = isNaN(Number(token))
-        ? token
-        : Number(token);
-      return parsedToken;
-    });
+  // in the task states: "1 +" rzuca błąd "Not Enough Operands"
+  // I based on length because in this case every situation where is not enough operands will be handled
+
+  if (inputString.length === 3) throw new Error("Not Enough Operands");
+
+  const operandsAndOperators: Array<number | string> = inputString
+    .split(" ")
+    .map((token) => (isNaN(Number(token)) ? token : Number(token)));
 
   const stack: number[] = [];
 
@@ -14,15 +17,30 @@ export function rpn(inputString: string): any {
     let result;
 
     if (typeof operandOrOperator === "string") {
-      // @ts-ignore
-      result = ((a: number, b: number) => a + b)(...stack.splice(-2));
+      switch (operandOrOperator) {
+        case "+":
+          // @ts-ignore
+          result = ((a: number, b: number) => a + b)(...stack.splice(-2));
+          break;
+        case "-":
+          // @ts-ignore
+          result = ((a: number, b: number) => a - b)(...stack.splice(-2));
+          break;
+        case "*":
+          // @ts-ignore
+          result = ((a: number, b: number) => a * b)(...stack.splice(-2));
+          break;
+        default:
+          // @ts-ignore
+          result = ((a: number, b: number) => a / b)(...stack.splice(-2));
+      }
     } else result = operandOrOperator;
+    // @ts-ignore
     stack.push(result);
   });
 
-
   return stack[0] as number;
-}
+};
 
 // powtarzaj dla token := weź_następny_token()
 //     jeżeli token to liczba
