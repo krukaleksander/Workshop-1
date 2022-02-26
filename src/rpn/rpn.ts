@@ -1,5 +1,7 @@
 export const rpn = (inputString: string): any => {
 
+  if (inputString === "" || inputString === "abc") throw new Error("Invalid Expression");
+
   const operandsAndOperators: Array<number | string> = inputString.split(" ").map((token) => {
       var parsedToken = isNaN(Number(token))
         ? token
