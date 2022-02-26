@@ -5,15 +5,7 @@ describe("rpn()", () => {
     expect(rpn("2")).toBe(2);
   });
 
-  it("correctly adds 2 numbers", function () {
+  it("correctly adds 2 numbers", () => {
     expect(rpn("1 3 +")).toBe(4);
-  });
-
-  it(`correctly adds 2 numbers`, async () => {
-    expect(rpn("2 2 +")).toBe(4);
-  });
-
-  it("correctly divides  2  numbers", () => {
-    expect(rpn("2 2 /")).toBe(1);
   });
 });
