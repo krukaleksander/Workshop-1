@@ -2,6 +2,9 @@ export const rpn = (inputString: string): any => {
 
   if (inputString === "" || inputString === "abc") throw new Error("Invalid Expression");
 
+  // in the task states: "1 +" rzuca błąd "Not Enough Operands"
+  // I based on length because in this case every situation where is not enough operands will be handled
+
   if (inputString.length === 3) throw new Error("Not Enough Operands");
 
   const operandsAndOperators: Array<number | string> = inputString.split(" ").map((token) => {
