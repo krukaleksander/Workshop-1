@@ -20,4 +20,7 @@ describe("rpn()", () => {
   it("4 3 4 + 5 1 + 2 * + + returns 23", () => {
     expect(rpn("4 3 4 + 5 1 + 2 * + +")).toBe(23);
   });
+  it("empty string throw Error Invalid Expression", () => {
+    expect(() => rpn("")).toThrow("Invalid Expression");
+  });
 });
