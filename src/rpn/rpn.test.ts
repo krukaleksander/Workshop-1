@@ -26,4 +26,7 @@ describe("rpn()", () => {
   it("abc string throw Error Invalid Expression", () => {
     expect(() => rpn("abc")).toThrow("Invalid Expression");
   });
+  it("1 + throw Error Invalid Expression", () => {
+    expect(() => rpn("1 +")).toThrow("Not Enough Operands");
+  });
 });
