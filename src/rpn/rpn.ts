@@ -7,12 +7,10 @@ export const rpn = (inputString: string): any => {
 
   if (inputString.length === 3) throw new Error("Not Enough Operands");
 
-  const operandsAndOperators: Array<number | string> = inputString.split(" ").map((token) => {
-      var parsedToken = isNaN(Number(token))
+  const operandsAndOperators: Array<number | string> = inputString.split(" ").map((token) => isNaN(Number(token))
         ? token
-        : Number(token);
-      return parsedToken;
-    });
+        : Number(token)
+    );
 
   const stack: number[] = [];
 
